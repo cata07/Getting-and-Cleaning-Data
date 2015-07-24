@@ -1,6 +1,3 @@
-# Getting-and-Cleaning-Data
-Coursera 2015
-
 ---
 title: "GCD_project_readme"
 author: "catalina enescu"
@@ -20,22 +17,22 @@ According ```README.TXT```:
 
 File  | Cols No | Rows No | Values | File "Label"
 -------|------ | ---------|----|----------------------------------------------
-```train/subject_train.txt```| 1  | 7352 | contain values from the set {1, 2,..., 30}. 1 mean the firs subject, 2 mean the second subject, et. | SUBJECT TRAIN FILE
+```train/subject_train.txt```| 1  | 7352 | contain values from the set {1, 2,..., 30}. 1 means the first subject, 2 means the second subject, etc. | SUBJECT TRAIN FILE
 ```train/y_train.txt```| 1  | 7352 | contain values from the set {1, 2,..., 6}. A number means one of the activities {WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING} | ACTIVITY TRAIN FILE 
-```train/X_train.txt``` |561 | 7352 | a line is the feature vector with time and frequency domain variables associate with a subject | FEATURE TRAIN FILE
-```test/subject_test.txt```| 1  | 2947 | contain values from the set {1, 2,..., 30}. 1 mean the firs subject, 2 mean the second subject, et. | SUBJECT TEST FILE
+```train/X_train.txt``` |561 | 7352 | a line is the feature vector with the time and frequency domain variables associated with a subject | FEATURE TRAIN FILE
+```test/subject_test.txt```| 1  | 2947 | contain values from the set {1, 2,..., 30}. 1 mean the first subject, 2 means the second subject, etc. | SUBJECT TEST FILE
 ```test/y_test.txt```| 1  | 2947 | contain values from the set {1, 2,..., 6}. A number means one of the activities {WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING} | ACTIVITY TEST FILE 
-```test/X_test.txt``` |561 | 2947 | a line is the feature vector with time and frequency domain variables associate with a subject | FEATURE TEST FILE
+```test/X_test.txt``` |561 | 2947 | a line is the feature vector with the time and frequency domain variables associated with a subject | FEATURE TEST FILE
 
 #### 1. Merges the training and the test sets to create one data set
 
 What is the purpose here? We want to look at all the data for the entire study: 70% (training) + 30% (test) = 100%. 
-Looking in the above table, we conclude that we will obtain first:
+Looking at the above table, we conclude that we will obtain first:
 1. a data table for  **all Subjects**: 1 col and 10299  rows (7352 rows from train + 2947 rows from test)
 2. a data table for **all Activities** associated with subjects: 1 col and 10299 rows (7352 rows from train + 2947 rows from test)
 3. a data table for **all Features** associated with the pairs (subject, activity): 561 cols and 10299 rows (7352 rows from train + 2947 rows from test)
 
-But we need just one **tidy** data table for the entire study. So, we will combine the columns of the three data tables having in mind the rules of "tidyng data":
+But we need just one **tidy** data table for the entire study. So, we will combine the columns of the three data tables having in mind the rules of  the "tidyng data" technique:
 1. Each variable is a column
 2. Each observation is a row
 3. Each type of observational unit is a table
@@ -57,7 +54,7 @@ The names for feature 1, feature 2,..., feature 561 are in the *features.txt* fi
 
 ##### Each observation is a row
 - **Number of rows**: 10299 (7352 rows from train + 2947 rows from test)
-- **One row contain**: the subject identifier, its **activity  number** and the 561 - feature vector with time and frequency domain variables. 
+- **One row contain**: the subject identifier, its **activity  number** and the 561 - feature vector with the time and frequency domain variables. 
 
 ##### Each type of observational unit is a table
 All data will be into one data table - **allDataTable** - with 563 columns and 10299 rows.
@@ -68,7 +65,7 @@ From **allDataTable** we will subset just the columns which contain one of the s
 #### 3. Uses descriptive activity names to name the activities in the data set
 In **allDataTable** we have the column *activityNum* - contain numbers from the set {1,2,3,4,5,6}
 In *activityLabels.txt* file, we have the activity name associate with each number from the set {1,2,3,4,5,6}.
-So, in **allDataTable** we will add a new column - *activityName* - with descriptive activity names (we can do a merge between **allDataTable** and a data table with columns *activityNum, activityName* using the common column *activityNum*)
+So, in **allDataTable** we will add a new column - *activityName* - with the descriptive activity names (we can do a merge between **allDataTable** and a data table with columns *activityNum, activityName* using the common column *activityNum*)
 
 
 #### 4. Appropriately labels the data set with descriptive variable names. 
@@ -104,7 +101,7 @@ Exception: When creating a classed object, the function name (constructor) and c
 3. "-" | "," --> "."
 4. "(" | ")" --> ""
 
-If we prefere very short name:
+If we prefer very short name:
 5. "Body" --> "B."
 6. "Acc" --> "A."
 7. "Gravity" --> "G."
@@ -112,9 +109,9 @@ If we prefere very short name:
 9. "Gyro" --> "g."
 10. "Mag" --> "M."
 11. "Freq" --> "F"
-But here I keep the original notations - its are short and suggestive. Its will be explained in the code book.
+But here I keep the original notations - they are short and suggestive. They will be explained in the code book.
 
-#### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+#### 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 We will create a group by (subject, activity) then apply mean function.
 
 ## The code
@@ -215,7 +212,7 @@ meanStdCols <- grep("mean\\(\\)|std\\(\\)", dataFeatures$featureName, value=TRUE
 meanStdCols <- union(meanStdCols, c("subject", "activityNum"))
 meanStdDataTable <- subset(allDataTable, select = meanStdCols)
 ```
-### 3. Uses descriptive activity names to name the activities in the data set
+### 3. Uses descriptive names to identify the activities in the data set
 ```
 activityLabels<- read.table("./dataset/UCI HAR Dataset/activity_labels.txt", stringsAsFactors=FALSE)
 setnames(activityLabels, names(activityLabels), c("activityNum","activityName"))
@@ -239,7 +236,7 @@ allDataTableCols <- mapply(gsub, "-|,", ".", allDataTableCols, USE.NAMES = FALSE
 allDataTableCols <- make.names(names=allDataTableCols, unique=TRUE, allow_ = TRUE)
 setnames(allDataTable, allDataTableCols)
 ```
-### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+### 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ```
 allDataTable.avg <- allDataTable %>%
