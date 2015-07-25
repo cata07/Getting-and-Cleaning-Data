@@ -15,6 +15,7 @@ Here are the data for the project:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
 You should create one R script called run_analysis.R that does the following. 
+
 1. Merges the training and the test sets to create one data set.
 1. Extracts only the measurements on the mean and standard deviation for each measurement. 
 1. Uses descriptive activity names to name the activities in the data set
@@ -44,17 +45,20 @@ File  | Cols No | Rows No | Values | File "Label"
 
 What is the purpose here? We want to look at all the data for the entire study: 70% (training) + 30% (test) = 100%. 
 Looking at the above table, we conclude that we will obtain first:
+
 1. a data table for  **all Subjects**: 1 col and 10299  rows (7352 rows from train + 2947 rows from test)
 1. a data table for **all Activities** associated with subjects: 1 col and 10299 rows (7352 rows from train + 2947 rows from test)
 1. a data table for **all Features** associated with the pairs (subject, activity): 561 cols and 10299 rows (7352 rows from train + 2947 rows from test)
 
 But we need just one **tidy** data table for the entire study. So, we will combine the columns of the three data tables having in mind the rules of  the "tidyng data" technique:
+
 1. Each variable is a column
 1. Each observation is a row
 1. Each type of observational unit is a table
 
 ##### Each variable is a column
 Variables:
+
 1.  subject 
 1.  activity 
 1.  feature 1
@@ -118,6 +122,7 @@ Exception: When creating a classed object, the function name (constructor) and c
 4. "(" | ")" --> ""
 
 If we prefer very short name:
+
 1. "Body" --> "B."
 1. "Acc" --> "A."
 1. "Gravity" --> "G."
@@ -125,6 +130,7 @@ If we prefer very short name:
 1. "Gyro" --> "g."
 1. "Mag" --> "M."
 1. "Freq" --> "F"
+
 But here I keep the original notations - they are short and suggestive. They will be explained in the code book.
 
 #### 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
