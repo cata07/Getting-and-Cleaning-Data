@@ -45,27 +45,27 @@ File  | Cols No | Rows No | Values | File "Label"
 What is the purpose here? We want to look at all the data for the entire study: 70% (training) + 30% (test) = 100%. 
 Looking at the above table, we conclude that we will obtain first:
 1. a data table for  **all Subjects**: 1 col and 10299  rows (7352 rows from train + 2947 rows from test)
-2. a data table for **all Activities** associated with subjects: 1 col and 10299 rows (7352 rows from train + 2947 rows from test)
-3. a data table for **all Features** associated with the pairs (subject, activity): 561 cols and 10299 rows (7352 rows from train + 2947 rows from test)
+1. a data table for **all Activities** associated with subjects: 1 col and 10299 rows (7352 rows from train + 2947 rows from test)
+1. a data table for **all Features** associated with the pairs (subject, activity): 561 cols and 10299 rows (7352 rows from train + 2947 rows from test)
 
 But we need just one **tidy** data table for the entire study. So, we will combine the columns of the three data tables having in mind the rules of  the "tidyng data" technique:
 1. Each variable is a column
-2. Each observation is a row
-3. Each type of observational unit is a table
+1. Each observation is a row
+1. Each type of observational unit is a table
 
 ##### Each variable is a column
 Variables:
-1. subject 
-2. activity 
-3. feature 1
-4. feature 2
-...
-feature 561
+1.  subject 
+1.  activity 
+1.  feature 1
+1.  feature 2
+1. ...
+1. feature 561
 
 The columns:
 1. subject - is the column from **allSubject** data table
-2. activityNum - is the column from **allActivity** data table
-3. feature 1, feature 2,..., feature 561 - are the columns from **allFeatures** data table
+1. activityNum - is the column from **allActivity** data table
+1. feature 1, feature 2,..., feature 561 - are the columns from **allFeatures** data table
 The names for feature 1, feature 2,..., feature 561 are in the *features.txt* file.
 
 ##### Each observation is a row
@@ -118,13 +118,13 @@ Exception: When creating a classed object, the function name (constructor) and c
 4. "(" | ")" --> ""
 
 If we prefer very short name:
-5. "Body" --> "B."
-6. "Acc" --> "A."
-7. "Gravity" --> "G."
-8. "Jerk" --> "J."
-9. "Gyro" --> "g."
-10. "Mag" --> "M."
-11. "Freq" --> "F"
+1. "Body" --> "B."
+1. "Acc" --> "A."
+1. "Gravity" --> "G."
+1. "Jerk" --> "J."
+1. "Gyro" --> "g."
+1. "Mag" --> "M."
+1. "Freq" --> "F"
 But here I keep the original notations - they are short and suggestive. They will be explained in the code book.
 
 #### 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
